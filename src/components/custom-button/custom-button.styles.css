@@ -1,0 +1,15 @@
+.custom_button {
+  background-color: #3400f4;
+  padding: 16px 24px;
+  min-width: 100px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button_text {
+  color: #fff;
+  font-weight: bold;
+  font-size: 12px;
+}

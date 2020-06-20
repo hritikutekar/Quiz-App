@@ -9,7 +9,7 @@ import CustomSlider from "../custom-slider/custom-slider.component";
 import { secondsToTime } from "../../utils/utils";
 
 const QuestionCard = ({ data, timeout, topic }) => {
-  let intervalId = 0;
+  const [intervalId, setIntervalId] = useState(0);
 
   const [questions, setQuestions] = useState(data);
   const [questionIndex, setQuestionIndex] = useState(0);
@@ -35,9 +35,11 @@ const QuestionCard = ({ data, timeout, topic }) => {
 
   useEffect(() => {
     // Timeout
-    intervalId = setInterval(timer, 1000);
+    const id = setInterval(timer, 1000);
+    setIntervalId(id);
     // Stop when component is not mounted.
     return () => clearInterval(intervalId);
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {

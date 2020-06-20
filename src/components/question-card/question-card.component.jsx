@@ -100,7 +100,7 @@ const QuestionCard = ({ data, timeout, topic }) => {
     <div className='question_card'>
       <div className='question_card__header'>
         <div className='section'>
-          <img src={topic.icon} className='section_logo' />
+          <img alt={topic.name} src={topic.icon} className='section_logo' />
           <p className='section_title'>{topic.name}</p>
         </div>
         <div className='progress'>

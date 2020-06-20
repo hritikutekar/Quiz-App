@@ -33,7 +33,11 @@ const TopicPage = ({ location }) => {
                 : "topic_card"
             }
           >
-            <img src={topic.icon} className='topic_card__icon' />
+            <img
+              alt={topic.name}
+              src={topic.icon}
+              className='topic_card__icon'
+            />
             <h3 className='topic_card__name'>{topic.name}</h3>
           </div>
         ))}

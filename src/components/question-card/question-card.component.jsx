@@ -7,7 +7,10 @@ import CustomCheckbox from "../custom-checkbox/custom-checkbox.component";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import CustomSlider from "../custom-slider/custom-slider.component";
 
-const QuestionCard = ({ questions, timeout }) => {
+const QuestionCard = ({ data, timeout, topic }) => {
+  let intervalId = 0;
+
+  const [questions, setQuestions] = useState(data);
   const [questionIndex, setQuestionIndex] = useState(0);
   const [selectedOption, setSelectedOption] = useState(null);
   const [unAttendedQuestions, setUnAttendedQuestions] = useState(
@@ -17,6 +20,7 @@ const QuestionCard = ({ questions, timeout }) => {
   const [time, setTime] = useState(timeout * 60);
 
   const getUnAttendedQuestions = () => {
+    // Returns length of questions where selectedOption is null.
     const attentedQuestions = questions.filter(
       (question) => question.selectedOption === null
     );
@@ -29,8 +33,24 @@ const QuestionCard = ({ questions, timeout }) => {
   };
 
   useEffect(() => {
-    setInterval(timer, 1000);
+    // Timeout
+    intervalId = setInterval(timer, 1000);
+    // Stop when component is not mounted.
+    return () => clearInterval(intervalId);
   }, []);
+
+  useEffect(() => {
+    // Reset selected options if user changes route.
+    return () => {
+      const temp = data.map((el) => {
+        el.selectedOption = null;
+
+        return el;
+      });
+
+      setQuestions(temp);
+    };
+  }, [data]);
 
   useEffect(() => {
     setSelectedOption(questions[questionIndex].selectedOption);
@@ -65,7 +85,7 @@ const QuestionCard = ({ questions, timeout }) => {
     );
   };
 
-  function secondsToTime(e) {
+  const secondsToTime = (e) => {
     var m = Math.floor((e % 3600) / 60)
         .toString()
         .padStart(2, "0"),
@@ -74,14 +94,14 @@ const QuestionCard = ({ questions, timeout }) => {
         .padStart(2, "0");
 
     return m + ":" + s;
-  }
+  };
 
   return (
     <div className='question_card'>
       <div className='question_card__header'>
         <div className='section'>
-          <div className='section_logo'>LOGO</div>
-          <p className='section_title'>Section name</p>
+          <img src={topic.icon} className='section_logo' />
+          <p className='section_title'>{topic.name}</p>
         </div>
         <div className='progress'>
           <p className='progress_text'>Progress: {progress}% completed</p>
@@ -120,6 +140,7 @@ const QuestionCard = ({ questions, timeout }) => {
       <div className='option_container'>
         {questions[questionIndex].options.map((el) => (
           <div
+            key={el}
             onClick={() => onSelected(el)}
             className={selectedOption === el ? "option active" : "option"}
           >

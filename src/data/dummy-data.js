@@ -28,3 +28,26 @@ export const dummyData = [
     answer: "Generated",
   },
 ];
+
+export const topics = [
+  {
+    name: "Chemistry",
+    icon:
+      "https://cdn3.iconfinder.com/data/icons/science-116/64/chemistry-laboratory-science-chemical-512.png",
+  },
+  {
+    name: "Physics",
+    icon:
+      "https://cdn1.iconfinder.com/data/icons/physic/512/physics_magnifier_angle_beam_drop-512.png",
+  },
+  {
+    name: "Biology",
+    icon:
+      "https://cdn3.iconfinder.com/data/icons/science-116/64/Biology-natural-science-organism-physical-512.png",
+  },
+  {
+    name: "Maths",
+    icon:
+      "https://cdn2.iconfinder.com/data/icons/startup-butterscotch-vol-1/512/Calculator-512.png",
+  },
+];

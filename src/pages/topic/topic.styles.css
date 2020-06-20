@@ -1,0 +1,33 @@
+.topic-page {
+  background-color: #121427;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.topic_container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 20px;
+  grid-auto-rows: minmax(100px, auto);
+}
+
+.topic_card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px 20px;
+  background-color: #62648d;
+  border-radius: 10px;
+  color: #fff;
+  cursor: pointer;
+}
+.topic_card__icon {
+  width: 100px;
+}
+
+.topic_card__active {
+  background-color: #2abfc7;
+}

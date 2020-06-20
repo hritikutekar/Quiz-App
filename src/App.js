@@ -1,15 +1,21 @@
 import React from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import "./App.css";
 
-import QuestionCard from "./components/question-card/question-card.component";
-import { dummyData } from "./data/dummy-data";
+import WelcomePage from "./pages/welcome/welcome.component";
+import QuestionsPage from "./pages/questions/questions.component";
+import TopicPage from "./pages/topic/topic.component";
 
 const App = () => {
   return (
-    <div className='App'>
-      <QuestionCard questions={dummyData} timeout={15} />
-    </div>
+    <Router>
+      <Switch>
+        <Route path='/' component={WelcomePage} exact />
+        <Route path='/questions' component={QuestionsPage} />
+        <Route path='/topic' component={TopicPage} />
+      </Switch>
+    </Router>
   );
 };
 

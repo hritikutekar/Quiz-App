@@ -6,6 +6,7 @@ import CustomButton from "../custom-button/custom-button.component";
 import CustomCheckbox from "../custom-checkbox/custom-checkbox.component";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import CustomSlider from "../custom-slider/custom-slider.component";
+import { secondsToTime } from "../../utils/utils";
 
 const QuestionCard = ({ data, timeout, topic }) => {
   let intervalId = 0;
@@ -83,17 +84,6 @@ const QuestionCard = ({ data, timeout, topic }) => {
     setProgress(
       (100 / questions.length) * (questions.length - getUnAttendedQuestions())
     );
-  };
-
-  const secondsToTime = (e) => {
-    var m = Math.floor((e % 3600) / 60)
-        .toString()
-        .padStart(2, "0"),
-      s = Math.floor(e % 60)
-        .toString()
-        .padStart(2, "0");
-
-    return m + ":" + s;
   };
 
   return (

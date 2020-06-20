@@ -3,7 +3,7 @@ import { dummyData } from "../../data/dummy-data";
 import QuestionCard from "../../components/question-card/question-card.component";
 
 const QuestionsPage = ({ location }) => {
-  const { name, topic } = location;
+  const { topic } = location;
 
   return (
     <div className='App'>

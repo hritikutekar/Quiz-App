@@ -4,6 +4,9 @@ import QuestionCard from "../../components/question-card/question-card.component
 
 const QuestionsPage = ({ location }) => {
   const { topic } = location;
+  if (topic === undefined) {
+    window.location.replace("/");
+  }
 
   return (
     <div className='App'>

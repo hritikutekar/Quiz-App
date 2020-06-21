@@ -139,7 +139,7 @@ const QuestionCard = ({ data, timeout, topic }) => {
 
         {unAttendedQuestions === 0 ? (
           <Link to={{ pathname: "/score", questions: questions }}>
-            <CustomButton onClick={nextQuestion} title='Submit' hide={false} />
+            <CustomButton title='Submit' hide={false} />
           </Link>
         ) : null}
       </div>

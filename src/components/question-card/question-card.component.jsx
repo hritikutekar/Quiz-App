@@ -7,11 +7,11 @@ import CustomCheckbox from "../custom-checkbox/custom-checkbox.component";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import CustomSlider from "../custom-slider/custom-slider.component";
 import { secondsToTime } from "../../utils/utils";
+import { Link } from "react-router-dom";
+import { useInterval } from "../../utils/useInterval";
 
 const QuestionCard = ({ data, timeout, topic }) => {
-  const [intervalId, setIntervalId] = useState(0);
-
-  const [questions, setQuestions] = useState(data);
+  const [questions] = useState(data);
   const [questionIndex, setQuestionIndex] = useState(0);
   const [selectedOption, setSelectedOption] = useState(null);
   const [unAttendedQuestions, setUnAttendedQuestions] = useState(
@@ -33,27 +33,9 @@ const QuestionCard = ({ data, timeout, topic }) => {
     setTime((prevState) => prevState - 1);
   };
 
-  useEffect(() => {
-    // Timeout
-    const id = setInterval(timer, 1000);
-    setIntervalId(id);
-    // Stop when component is not mounted.
-    return () => clearInterval(intervalId);
-    // eslint-disable-next-line
-  }, []);
-
-  useEffect(() => {
-    // Reset selected options if user changes route.
-    return () => {
-      const temp = data.map((el) => {
-        el.selectedOption = null;
-
-        return el;
-      });
-
-      setQuestions(temp);
-    };
-  }, [data]);
+  useInterval(() => {
+    timer();
+  }, 1000);
 
   useEffect(() => {
     setSelectedOption(questions[questionIndex].selectedOption);
@@ -156,7 +138,9 @@ const QuestionCard = ({ data, timeout, topic }) => {
         />
 
         {unAttendedQuestions === 0 ? (
-          <CustomButton onClick={nextQuestion} title='Submit' hide={false} />
+          <Link to={{ pathname: "/score", questions: questions }}>
+            <CustomButton onClick={nextQuestion} title='Submit' hide={false} />
+          </Link>
         ) : null}
       </div>
     </div>

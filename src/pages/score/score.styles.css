@@ -1,0 +1,25 @@
+.score-page {
+  background-color: #121427;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.score_container {
+  position: relative;
+}
+.score {
+  position: absolute;
+  top: 0;
+  left: 2px;
+  bottom: 1.5px;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 50px;
+  font-weight: 800;
+}

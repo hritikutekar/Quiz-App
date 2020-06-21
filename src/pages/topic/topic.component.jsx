@@ -1,14 +1,13 @@
 import React, { useState } from "react";
-import { useHistory, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { topics } from "../../data/dummy-data";
 
 import "./topic.styles.css";
 import { ArrowForwardIosRounded } from "@material-ui/icons";
 
 const TopicPage = ({ location }) => {
-  const history = useHistory();
   if (location.name === undefined) {
-    history.push("/");
+    window.location.replace("/");
   }
 
   const [selectedTopic, setSelectedTopic] = useState();
@@ -26,6 +25,7 @@ const TopicPage = ({ location }) => {
       <div className='topic_container'>
         {topics.map((topic) => (
           <div
+            key={topic.name}
             onClick={() => handleSelectedTopic(topic)}
             className={
               selectedTopic !== undefined && selectedTopic.name === topic.name
